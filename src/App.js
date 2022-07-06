@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
 function App() {
+
+  const [name, setName] = useState("Eray");
+  const [age, setAge] = useState(10);
+  const [friends, setFriedns] = useState(["ahmet", "murat"]);
+  const [address, setAddress] = useState({ title: "İstanbul", zip: 34756 });
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <h1>Merhaba {name}!</h1>
+      <h2>{age}</h2>
+      <button onClick={() => setName("Mehmet")}>Change Name</button>
+      <button onClick={() => setAge(23)}>Change Age</button>
+
+      <hr />
+      <br /><br />
+
+      <h2>Friends</h2>
+      {friends.map((friend, index) => (<div key={index}>{friend}</div>))}
+      <button onClick={() => setFriedns(["ayşe", ...friends])}>Add New Friend</button>
+      
+      <hr />
+      <br /><br />
+
+      <h2>Address</h2>
+      <div>{address.title} {address.zip}</div>
+      <button onClick={() => setAddress({ ...address, title: "Ankara", zip: 55555 })}>Change Adress</button>
+
+
+      
     </div>
   );
 }
